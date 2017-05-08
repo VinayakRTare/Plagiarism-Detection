@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;KMP_String_Matching.java&apos; to &apos;SMPD_V3/src/com.algo.smpd&apos;&#x0D;&#x0A;- Original project: &apos;Plagiarism Detector&apos;&#x0D;&#x0A;- Destination element: &apos;SMPD_V3/src/com.algo.smpd&apos;&#x0D;&#x0A;- Original element: &apos;com.algos.KMP.KMP_String_Matching.java&apos;" description="Copy compilation unit" destination="=SMPD_V3/src&lt;com.algo.smpd" element1="/src&lt;com.algos.KMP{KMP_String_Matching.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1494000144354" units="1" version="1.0"/>
+</session>

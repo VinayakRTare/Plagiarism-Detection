@@ -1,0 +1,10 @@
+
+
+
+ From Source file : Assignment 2.txt
+ Source file Sentence Count: 1
+Input Sentence Count1
+ BM Similarity ratio : 0.0 Time Taken = 3.95E-4 Count : 0
+ Naive Similarity ratio : 0.0 Time Taken = 0.0 Count : 1
+ KMP Similarity ratio : 0.0 Time Taken = 0.001973 Count : 64
+ LCSS Similarity ratio : 0.0 Time Taken = 0.013816 Count : 416

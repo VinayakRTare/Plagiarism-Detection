@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.util.Collections"/>
+<fullyQualifiedTypeName name="java.io.FileWriter"/>
+<fullyQualifiedTypeName name="java.io.BufferedWriter"/>
+<fullyQualifiedTypeName name="java.io.BufferedReader"/>
+<fullyQualifiedTypeName name="java.io.FileReader"/>
+<fullyQualifiedTypeName name="java.lang.StringBuffer"/>
+<fullyQualifiedTypeName name="java.util.Scanner"/>
+<fullyQualifiedTypeName name="java.io.File"/>
+<fullyQualifiedTypeName name="com.algo.smpd.BoyerMoore"/>
+<fullyQualifiedTypeName name="com.algo.smpd.Naive"/>
+<fullyQualifiedTypeName name="com.algo.smpd.LongestCommonSubsequence"/>
+<fullyQualifiedTypeName name="com.algo.smpd.KMP"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="com.algo.smpd.KMP_String_Matching"/>
+</qualifiedTypeNameHistroy>

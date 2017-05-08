@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;input.txt&apos; to &apos;Algo_Project_SMPD&apos;&#x0D;&#x0A;- Original project: &apos;SMPD_V5&apos;&#x0D;&#x0A;- Destination element: &apos;Algo_Project_SMPD&apos;&#x0D;&#x0A;- Original element: &apos;input.txt&apos;" description="Copy file" destination="=Algo_Project_SMPD" element1="input.txt" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1494022837870" units="0" version="1.0"/>
+</session>
