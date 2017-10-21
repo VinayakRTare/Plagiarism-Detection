@@ -23,15 +23,10 @@ import java.util.regex.Pattern;
  */
 public class AlgoProject {
 
-    /**
-     * @param args the command line arguments
-     */
-	
 	
     public static void main(String[] args) throws FileNotFoundException, IOException {
-        // TODO code application logic here
     	
-    	LongestCommonSubsequence lcsSearch = new LongestCommonSubsequence();
+    		LongestCommonSubsequence lcsSearch = new LongestCommonSubsequence();
 		BoyerMoore bmSearch = new BoyerMoore();
 		KMP_String_Matching kmpSearch = new KMP_String_Matching();
 		Naive naiveSearch = new Naive();
@@ -46,35 +41,27 @@ public class AlgoProject {
 
 
 		int inputSentenceCount=0;
-		//int srcSentenceCount=0;
-				
+					
 		FileWriter outLcssFile = new FileWriter("lcss.txt", true);
 		FileWriter outKmpFile = new FileWriter("kmp.txt", true);
 		FileWriter outBoyerMooreFile = new FileWriter("boyerMoore.txt", true);
 		FileWriter outNaiveFile = new FileWriter("naive.txt", true);
 		FileWriter outResult = new FileWriter("result.txt", true);		
-		
-		
-        //URL inputFilePath = AlgoProject.class.getResource("input.txt");
-        File input_file = new File("input.txt");
-        //File source_file = new File("source.txt");
+		       
+        	File input_file = new File("input.txt");
         
-        Scanner input_reader = new Scanner(input_file);        
-        input_reader.useDelimiter("\\A");        
-        String input_contents = input_reader.next();
-        
-       // URL sourceFilePath = AlgoProject.class.getResource("source.txt");
-        //File source_file = new File(sourceFilePath.getFile());
-        
-        File sourceFolder = new File("C:/Users/Vinayak Tare/Desktop/Allfiles");
-        File fileLcss = new File("lcss.txt"); // lcss result to be written in lcss.txt
+        	Scanner input_reader = new Scanner(input_file);        
+        	input_reader.useDelimiter("\\A");        
+        	String input_contents = input_reader.next();
+      
+        	File sourceFolder = new File("../Allfiles");
+       	 	File fileLcss = new File("lcss.txt"); // lcss result to be written in lcss.txt
 		File fileKmp = new File("kmp.txt"); // kmp result to be written in kmp.txt
 		File fileNaive = new File("naive.txt"); // naive string comparison  result to be written in naive.txt
 		File fileBM = new File("boyreMoore.txt"); 
 		File fileResult = new File("result.txt"); // Boyes Moore result to be written in boyreMoore.txt
-		// old result files deleted for the new result files
 		
-		outBoyerMooreFile.flush();
+	    // old result files deleted for the new result files
 		fileLcss.delete();
 		fileKmp.delete();
 		fileNaive.delete();
@@ -82,94 +69,71 @@ public class AlgoProject {
 		Pattern re = Pattern.compile("[^.!?\\s][^.!?]*(?:[.!?](?!['\"]?\\s|$)[^.!?]*)*[.!?]?['\"]?(?=\\s|$)", Pattern.MULTILINE | Pattern.COMMENTS);
 		Matcher inputSentenceCountExtractor = re.matcher(input_contents);
 		while(inputSentenceCountExtractor.find()){
-			//System.out.println(inputSentenceCountExtractor.group());
 			inputSentenceCount++;
 		}
 		
-		/*Matcher sourceSentenceExtractor = re.matcher(source_contents);
-		while(sourceSentenceExtractor.find()){
-			//System.out.println(inputSentenceCountExtractor.group());
-			srcSentenceCount++;
-		}*/
-		
         File[] sourcefiles = sourceFolder.listFiles();
-        
+        // matching plagiarised file sentence with all each sentence of all the source files
         for (File source_file : sourcefiles){
-           Scanner source_reader = new Scanner(source_file);        
-            source_reader.useDelimiter("\\A");        
-            String source_contents = source_reader.next();
+          	Scanner source_reader = new Scanner(source_file);        
+            	source_reader.useDelimiter("\\A");        
+           	String source_contents = source_reader.next();
     		int lcssMatchCount=0;
     		int bmMatchCount=0;
     		int kmpMatchCount=0;
     		int naiveMatchCount=0;
             
         
-            Matcher sourceSentenceExtractor = re.matcher(source_contents);
-            int i=1,j=0;int srcSentenceCount=0;
-            while (sourceSentenceExtractor.find()) {
-                Matcher inputSentenceExtractor = re.matcher(input_contents);
-                String currentSourceSentence = sourceSentenceExtractor.group().replace(".", "");
-                currentSourceSentence = sourceSentenceExtractor.group().replace("?", "");
-                currentSourceSentence = sourceSentenceExtractor.group().replace("!", "");
-                j=1;
-                srcSentenceCount++;
-                while(inputSentenceExtractor.find()){
+           	Matcher sourceSentenceExtractor = re.matcher(source_contents);
+           	int i=1,j=0;int srcSentenceCount=0;
+           	while (sourceSentenceExtractor.find()) {
+             	 	Matcher inputSentenceExtractor = re.matcher(input_contents);
+               	 	String currentSourceSentence = sourceSentenceExtractor.group().replace(".", "");
+                	currentSourceSentence = sourceSentenceExtractor.group().replace("?", "");
+                	currentSourceSentence = sourceSentenceExtractor.group().replace("!", "");
+                	j=1;
+                	srcSentenceCount++;
+                	while(inputSentenceExtractor.find()){
                     
-                    String currentInputSentence = inputSentenceExtractor.group().replace(".", "");
-                    currentInputSentence = inputSentenceExtractor.group().replace("?", "");
-                    currentInputSentence = inputSentenceExtractor.group().replace("!", "");
+                    	String currentInputSentence = inputSentenceExtractor.group().replace(".", "");
+                    	currentInputSentence = inputSentenceExtractor.group().replace("?", "");
+                    	currentInputSentence = inputSentenceExtractor.group().replace("!", "");
                     
-                    double simrLcss = lcsSearch.lcssMatchingSentences(currentSourceSentence, currentInputSentence);
-                    totallcsTime+=lcsSearch.getTime();
-                    if(simrLcss>0.06){
-                    	outLcssFile.append("Sentence no."+j+"\r\n              \""+currentInputSentence+"\"     of  \r\n "+input_file.getName()+" \r \n is plagiarised from  \r \n"+source_file.getName()+" line no. "+i+"\"  \r\n "+currentSourceSentence+"\" \r\n \r\n \r\n");
-                    	lcssMatchCount++;
-                    }
+                    	double simrLcss = lcsSearch.lcssMatchingSentences(currentSourceSentence, currentInputSentence);
+                    	totallcsTime+=lcsSearch.getTime();
+                    	if(simrLcss>0.06){
+                    		outLcssFile.append("Sentence no."+j+"\r\n              \""+currentInputSentence+"\"     of  \r\n "+input_file.getName()+" \r \n is plagiarised from  \r \n"+source_file.getName()+" line no. "+i+"\"  \r\n "+currentSourceSentence+"\" \r\n \r\n \r\n");
+                    		lcssMatchCount++;
+                    	}
                     
-                    double simrByrMr = bmSearch.boyerMooreMatchingSentences(currentSourceSentence, currentInputSentence);
-                    totalbmTime += bmSearch.timeTaken();
-                    if(simrByrMr>0.06){
-                    	outBoyerMooreFile.append("Sentence no."+j+"\r\n        \""+currentInputSentence+"\"     of  \r\n "+input_file.getName()+" \r\n is plagiarised from   \r\n"+source_file.getName()+"   line no.   "+i+"\"  \r\n "+currentSourceSentence+"\"  \r\n \r\n \r\n");
-                    	
-                    	bmMatchCount++;
-                    }
+                    	double simrByrMr = bmSearch.boyerMooreMatchingSentences(currentSourceSentence, currentInputSentence);
+                    	totalbmTime += bmSearch.timeTaken();
+                    	if(simrByrMr>0.06){
+                    		outBoyerMooreFile.append("Sentence no."+j+"\r\n        \""+currentInputSentence+"\"     of  \r\n "+input_file.getName()+" \r\n is plagiarised from   \r\n"+source_file.getName()+"   line no.   "+i+"\"  \r\n "+currentSourceSentence+"\"  \r\n \r\n \r\n");
+                    	        bmMatchCount++;
+                    	}
                     
-                    double simrNaive = naiveSearch.naiveSearchMatchingSentences(currentSourceSentence, currentInputSentence);
-                    totalnaiveTime += naiveSearch.getTimeTaken();
-                    if(simrNaive>0.06){
-                    	outNaiveFile.append("Sentence no."+j+"\r\n              \""+currentInputSentence+"\"     of  \r\n "+input_file.getName()+" \r \n is plagiarised from  \r \n"+source_file.getName()+" line no. "+i+"\"  \r\n "+currentSourceSentence+"\" \r\n \r\n \r\n");
-                    	
-                    	naiveMatchCount++;
-                    }
+                    	double simrNaive = naiveSearch.naiveSearchMatchingSentences(currentSourceSentence, currentInputSentence);
+                    	totalnaiveTime += naiveSearch.getTimeTaken();
+                    	if(simrNaive>0.06){
+                    		outNaiveFile.append("Sentence no."+j+"\r\n              \""+currentInputSentence+"\"     of  \r\n "+input_file.getName()+" \r \n is plagiarised from  \r \n"+source_file.getName()+" line no. "+i+"\"  \r\n "+currentSourceSentence+"\" \r\n \r\n \r\n");
+                    	        naiveMatchCount++;
+                    	}
                     
-                    double simrKMP = kmpSearch.KMPMatchingSentences(currentSourceSentence, currentInputSentence);
-                    totalkmpTime += kmpSearch.timeTaken();
-                    if(simrKMP>0.06){
-                    	outKmpFile.append("Sentence no."+j+"\r\n              \""+currentInputSentence+"\"     of  \r\n "+input_file.getName()+" \r \n is plagiarised from  \r \n"+source_file.getName()+" line no. "+i+"\"  \r\n "+currentSourceSentence+"\" \r\n \r\n \r\n");
-                    	
-                    	kmpMatchCount++;
-                    }
+                    	double simrKMP = kmpSearch.KMPMatchingSentences(currentSourceSentence, currentInputSentence);
+                    	totalkmpTime += kmpSearch.timeTaken();
+                    	if(simrKMP>0.06){
+                    		outKmpFile.append("Sentence no."+j+"\r\n              \""+currentInputSentence+"\"     of  \r\n "+input_file.getName()+" \r \n is plagiarised from  \r \n"+source_file.getName()+" line no. "+i+"\"  \r\n "+currentSourceSentence+"\" \r\n \r\n \r\n");                    	
+				kmpMatchCount++;
+                    	}
                     
-                  j++; 
-                  
-                }
-                i++;
+                  	j++; 
+                  }
+                  i++;
                 
             } 
             
-            //System.out.println("Boyer Moore Count"+bmMatchCount+" kmp match count"+kmpMatchCount+"  lcss match count"+lcssMatchCount+" Naive Count"+naiveMatchCount);
-           /* 
-            double srcC = (double)srcSentenceCount;
-            double inpC = (double)inputSentenceCount;
-            //System.out.println(" Denom "+denom);
-            double matchBM = (double)bmMatchCount;
-            double denom = srcC*inpC;
-            //System.out.println("denom : "+denom);
-            double ratioBM = matchBM/denom;
-            double ratioKMP = (double)kmpMatchCount/denom;
-            double ratioLcss = (double)lcssMatchCount/denom;
-            double ratioNaive = (double)naiveMatchCount/denom;
-            */
+            // calculating results
             //Conversion to seconds
             
             totalkmpTime = (totalkmpTime) / 1000000;
@@ -179,17 +143,16 @@ public class AlgoProject {
             
             double srcC = (double)srcSentenceCount;
             double inpC = (double)inputSentenceCount;
-            //System.out.println(" Denom "+denom);
             double matchBM = (double)bmMatchCount;
             double denom = srcC*inpC;
-            //System.out.println("denom : "+denom);
+           
             double ratioBM = matchBM/denom;
             double ratioKMP = (double)kmpMatchCount/denom;
             double ratioLcss = (double)lcssMatchCount/denom;
             double ratioNaive = (double)naiveMatchCount/denom;
             
             
-
+	    // writing result to txt files
             System.out.println("");
             outResult.append("\r\n\r\n");
             outResult.append("\r\n From Source file : "+source_file.getName());
@@ -198,12 +161,11 @@ public class AlgoProject {
             outResult.append("\r\n Naive Similarity ratio : "+ratioNaive*1000+" Time Taken = "+totalnaiveTime+" Count : "+naiveSearch.getCounterforTime());naiveSearch.setCounterForTime();
             outResult.append("\r\n KMP Similarity ratio : "+ratioKMP*1000+" Time Taken = "+totalkmpTime+" Count : "+kmpSearch.getCounterforTime());kmpSearch.setCounterForTime();
             outResult.append("\r\n LCSS Similarity ratio : "+ratioLcss*1000+" Time Taken = "+totallcsTime+" Count : "+lcsSearch.getCounterforTime());lcsSearch.setCounterForTime();
-           // System.out.println("BM Sentence ratio : "+ratio*1000);
+           
         
             
         }
-       //System.out.println(" j Count"+inputSentenceCount+" Boyer Count "+bmMatchCount);
-        //outBoyerMooreFile.flush();
+       //closing files
        outBoyerMooreFile.close();
        outNaiveFile.close();
        outKmpFile.close();
