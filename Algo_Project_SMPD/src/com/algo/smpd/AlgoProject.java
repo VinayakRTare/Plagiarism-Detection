@@ -26,51 +26,53 @@ public class AlgoProject {
 	
     public static void main(String[] args) throws FileNotFoundException, IOException {
     	
-    		LongestCommonSubsequence lcsSearch = new LongestCommonSubsequence();
-		BoyerMoore bmSearch = new BoyerMoore();
-		KMP_String_Matching kmpSearch = new KMP_String_Matching();
-		Naive naiveSearch = new Naive();
+	
+    	LongestCommonSubsequence lcsSearch = new LongestCommonSubsequence();
+	BoyerMoore bmSearch = new BoyerMoore();
+	KMP_String_Matching kmpSearch = new KMP_String_Matching();
+	Naive naiveSearch = new Naive();
 		
-		double totallcsTime=0;
-		double totalbmTime=0,totalkmpTime=0,totalnaiveTime=0;
+	double totallcsTime=0;
+	double totalbmTime=0;
+	double totalkmpTime=0;
+	double totalnaiveTime=0;
 		
-		double lcsStart=0,lcsEnd=0;
-		double bmStart=0,bmEnd=0;
-		double kmpStart=0,kmpEnd=0;
-		double naiveStart=0,naiveEnd=0;
+	double lcsStart=0,lcsEnd=0;
+	double bmStart=0,bmEnd=0;
+	double kmpStart=0,kmpEnd=0;
+	double naiveStart=0,naiveEnd=0;
 
-
-		int inputSentenceCount=0;
-					
-		FileWriter outLcssFile = new FileWriter("lcss.txt", true);
-		FileWriter outKmpFile = new FileWriter("kmp.txt", true);
-		FileWriter outBoyerMooreFile = new FileWriter("boyerMoore.txt", true);
-		FileWriter outNaiveFile = new FileWriter("naive.txt", true);
-		FileWriter outResult = new FileWriter("result.txt", true);		
+	int inputSentenceCount=0;
+	//initializing file writers				
+	FileWriter outLcssFile = new FileWriter("lcss.txt", true);
+	FileWriter outKmpFile = new FileWriter("kmp.txt", true);
+	FileWriter outBoyerMooreFile = new FileWriter("boyerMoore.txt", true);
+	FileWriter outNaiveFile = new FileWriter("naive.txt", true);
+	FileWriter outResult = new FileWriter("result.txt", true);		
 		       
-        	File input_file = new File("input.txt");
+        File input_file = new File("input.txt");
         
-        	Scanner input_reader = new Scanner(input_file);        
-        	input_reader.useDelimiter("\\A");        
-        	String input_contents = input_reader.next();
+        Scanner input_reader = new Scanner(input_file);        
+        input_reader.useDelimiter("\\A");        
+        String input_contents = input_reader.next();
       
-        	File sourceFolder = new File("../Allfiles");
-       	 	File fileLcss = new File("lcss.txt"); // lcss result to be written in lcss.txt
-		File fileKmp = new File("kmp.txt"); // kmp result to be written in kmp.txt
-		File fileNaive = new File("naive.txt"); // naive string comparison  result to be written in naive.txt
-		File fileBM = new File("boyreMoore.txt"); 
-		File fileResult = new File("result.txt"); // Boyes Moore result to be written in boyreMoore.txt
+        File sourceFolder = new File("../Allfiles");
+       	File fileLcss = new File("lcss.txt"); // lcss result to be written in lcss.txt
+	File fileKmp = new File("kmp.txt"); // kmp result to be written in kmp.txt
+	File fileNaive = new File("naive.txt"); // naive string comparison  result to be written in naive.txt
+	File fileBM = new File("boyreMoore.txt"); 
+	File fileResult = new File("result.txt"); // Boyes Moore result to be written in boyreMoore.txt
 		
-	    // old result files deleted for the new result files
-		fileLcss.delete();
-		fileKmp.delete();
-		fileNaive.delete();
-		fileBM.delete();
-		Pattern re = Pattern.compile("[^.!?\\s][^.!?]*(?:[.!?](?!['\"]?\\s|$)[^.!?]*)*[.!?]?['\"]?(?=\\s|$)", Pattern.MULTILINE | Pattern.COMMENTS);
-		Matcher inputSentenceCountExtractor = re.matcher(input_contents);
-		while(inputSentenceCountExtractor.find()){
-			inputSentenceCount++;
-		}
+	// old result files deleted for the new result files
+	fileLcss.delete();
+	fileKmp.delete();
+	fileNaive.delete();
+	fileBM.delete();
+	Pattern re = Pattern.compile("[^.!?\\s][^.!?]*(?:[.!?](?!['\"]?\\s|$)[^.!?]*)*[.!?]?['\"]?(?=\\s|$)", Pattern.MULTILINE | Pattern.COMMENTS);
+	Matcher inputSentenceCountExtractor = re.matcher(input_contents);
+	while(inputSentenceCountExtractor.find()){
+		inputSentenceCount++;
+	}
 		
         File[] sourcefiles = sourceFolder.listFiles();
         // matching plagiarised file sentence with all each sentence of all the source files
